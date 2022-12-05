@@ -4,11 +4,21 @@ package org.example.starter;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
-public class Main {
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+public class ArrayInitRun {
     public static void main(String[] args) throws Exception {
+        String inputFile = null;
+        if ( args.length > 0 )
+            inputFile = args[0];
+
+        InputStream is = System.in;
+        if ( inputFile != null )
+            is = new FileInputStream(inputFile);
 
         // create a CharStream that reads from standard input
-        CharStream input = CharStreams.fromStream(System.in);
+        CharStream input = CharStreams.fromStream(is);
         //ANTLRInputStream input = new ANTLRInputStream(System.in);
         // create a lexer that feeds off of input CharStream
         ArrayInitLexer lexer = new ArrayInitLexer(input);
